@@ -103,65 +103,63 @@ describe Matriz do
 #racionales
 describe Racional do
    before :each do
-      @f = Racional.new(-8,4)
-      @f2 = Racional.new(-54,32)
+      @f = Racional.new(-1,2)
+      @f2 = Racional.new(-3,4)
    end
    describe "Guardar variables" do
       it "Numerador" do
-         @f.numerador.should eq(-8)
+         @f.numerador.should eq(-1)
       end
       it "Denominador" do
-         @f.denominador.should eq(4)
+  
+       @f.denominador.should eq(2)
       end
    end
 
 
    describe "Mostrar" do
       it "Mostrar Racional" do
-         @f.to_s.should match "-8/4"
+         @f.to_s.should match "-1/2"
       end
       it "Mostrar flotante" do
-         @f.flotante.should eq(-2.0)
+         @f.flotante.should eq(-1.0)
       end
    end
    describe "Metodos de calculo" do
       it "Se debe sumar dos Racionales con + y dar el resultado de forma reducida" do
-         @f.+(@f2).should eq(Racional.new(-59,16))
+         @f.+(@f2).should eq(Racional.new(-5,4))
       end
       it "Se debe restar dos Racionales con - y dar el resultado de forma reducida" do
-         @f.-(@f2).should eq(Racional.new(-5,16))
+         @f.-(@f2).should eq(Racional.new(1,4))
       end
       it "Se debe multiplicar dos Racionales con * y dar el resultado de forma reducida" do
-         @f.*(@f2).should eq(Racional.new(27,8))
+         @f.*(@f2).should eq(Racional.new(3,8))
       end
       it "Se debe dividir dos Racionales con / y dar el resultado de forma reducida" do
-         @f./(@f2).should eq(Racional.new(-32,-27))
+         @f./(@f2).should eq(Racional.new(-2,-3))
       end
-      it "Se debe calcular el resto dos Racionales con % y dar el resultado de forma reducida" do
-         @f3 = Racional.new(-27.0,16.0)
-         @f.%(@f3).should eq(-0.3125)
-      end
+  
       it "Se debe calcular el valor absoluto de una Racional con el metodo abs" do
          @f.abs
-         @f.numerador.should eq(8)
-         @f.denominador.should eq(4)
+         @f.numerador.should eq(1)
+         @f.denominador.should eq(2)
       end
 
       it "Se debe calcular el reciproco de una Racional con el metodo reciprocal" do
          @f.reciprocal
-         @f.numerador.should eq(4)
-         @f.denominador.should eq(-8)
+         @f.numerador.should eq(2)
+         @f.denominador.should eq(-1)
       end
       it "Se debe calcular el opuesto de una Racional con -@" do
          @f.-@
-         @f.numerador.should eq(8)
+         @f.numerador.should eq(1)
       end
    end
    describe "Metodos de comparacion" do
       it "Se debe comparar si dos Racionales son iguales con ==" do
          @f3 = Racional.new(-8,4)
          @f4 = Racional.new(1,6)
-         @f.==(@f3).should be true
+         @f.==(@f3).should be false
          @f.==(@f4).should be false
       end
       it "Se debe de poder comprobar si una fracion es menor que otra" do
@@ -182,7 +180,7 @@ describe Racional do
          @f5 = Racional.new(-8,4)
          @f.<=(@f3).should be true
          @f.<=(@f4).should be false
-         @f.<=(@f5).should be true
+         @f.<=(@f5).should be false
       end
       it "Se debe de poder comprobar si una fracion es mayor o igual que otra" do
          @f3 = Racional.new(1,3)
