@@ -106,21 +106,30 @@ describe Racional do
       @f = Racional.new(-8,4)
       @f2 = Racional.new(-54,32)
    end
-   describe "Guardar variables" do
-      it "Numerador" do
+   describe "Almacenamiento de las variables" do
+      it "Debe existir un numerador" do
          @f.numerador.should eq(-8)
       end
-      it "Denominador" do
+      it "Debe existir un denominador" do
          @f.denominador.should eq(4)
       end
    end
-
-
-   describe "Mostrar" do
-      it "Mostrar Racional" do
+   it "Debe de estar en su forma reducida" do
+      @f.reducir(@f).should eq(Racional.new(-2,1))
+   end
+   describe "Metodos getter" do
+      it "Se debe invocar al metodo num() para obtener el numerador" do
+         @f.num().should eq(-8)
+      end
+      it "Se debe invocar al metodo denom() para obtener el denominador" do
+         @f.denom().should eq(4)
+      end
+   end
+   describe "Metodos de mostrar" do
+      it "Se debe mostrar por consola la Racional de la forma a/b" do
          @f.to_s.should match "-8/4"
       end
-      it "Mostrar flotante" do
+      it "Se debe mostrar por consola la Racional en forma flotante" do
          @f.flotante.should eq(-2.0)
       end
    end

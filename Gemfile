@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in prcti09.gemspec
 gemspec
+gemspec
+gem 'guard'
+gem 'guard-rspec'
+gem 'guard-bundler'
