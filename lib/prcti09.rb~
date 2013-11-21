@@ -81,8 +81,8 @@ class Mdensa < Matriz
     def min
 		min = @matriz[0][0]
                 i, j = 0 , 0
-                while i < @m
-                        while j < @n       
+                while i < @m-1
+                        while j < @n-1
  				if @matriz[i][j] < min
 		         		min = @matriz[i][i]
                                 end

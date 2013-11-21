@@ -2,7 +2,7 @@ require "prcti09/version"
 require 'gcd.rb'
 
 
-#####################################  MAtriz
+#####################################  Matriz
 class Matriz
   attr_accessor :m, :n
   def initialize (m,n)
