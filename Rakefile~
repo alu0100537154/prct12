@@ -1,0 +1,16 @@
+require "bundler/gem_tasks"
+
+task :default => :bin
+
+task :bin => :spec do
+  sh "ruby -Ilib -Itest test/test.rb"
+end
+
+
+
+
+
+
+
+
+
