@@ -180,7 +180,7 @@ describe Racional do
          @f5 = Racional.new(-8,4)
          @f.<=(@f3).should be true
          @f.<=(@f4).should be false
-         @f.<=(@f5).should be true
+         @f.<=(@f5).should be false
       end
       it "Se debe de poder comprobar si una fracion es mayor o igual que otra" do
          @f3 = Racional.new(1,3)
@@ -204,7 +204,8 @@ end
     		@m1[1,1] = 4
                 @m2 = MDispersa.new(2, 2, {0 => {0 => 0, 1 => 0}, 1 => {0 => 0, 1 => 4}})
                 @m3 = MDispersa.new(2, 2, {0 => {0 => Racional.new(1,2), 1 => Racional.new(1,2)}, 1 => {0 => Racional.new(1,2), 1 => Racional.new(1,2)}})
-
+		@m10 = MDispersa.new(2, 2, {0 => {0 => 0, 1 => 0}, 1 => {0 => Racional.new(1,2), 1 => 0}})
+               
         end
 
         describe "Operaciones matrices de diferentes " do
@@ -216,6 +217,16 @@ end
      				@m4[1][0].should eq(3)
      				@m4[1][1].should eq(8)  
                         end
+
+			#prueba clase
+                        it "Suma" do
+                                @m4 = @m1 + @m10
+				@m4[0][0].should eq(1)
+    				@m4[0][1].should eq(2)
+     				@m4[1][0].should eq(Racional.new(7,2))
+     				@m4[1][1].should eq(4)  
+                        end			
+
                       it "Resta" do
                       
 				@m4 = @m1 - @m2

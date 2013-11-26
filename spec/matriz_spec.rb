@@ -204,7 +204,8 @@ end
     		@m1[1,1] = 4
                 @m2 = MDispersa.new(2, 2, {0 => {0 => 0, 1 => 0}, 1 => {0 => 0, 1 => 4}})
                 @m3 = MDispersa.new(2, 2, {0 => {0 => Racional.new(1,2), 1 => Racional.new(1,2)}, 1 => {0 => Racional.new(1,2), 1 => Racional.new(1,2)}})
-
+		@m10 = MDispersa.new(2, 2, {0 => {0 => 0, 1 => 0}, 1 => {0 => Racional.new(1,2), 1 => 0}})
+               
         end
 
         describe "Operaciones matrices de diferentes " do
@@ -216,6 +217,16 @@ end
      				@m4[1][0].should eq(3)
      				@m4[1][1].should eq(8)  
                         end
+
+			#prueba clase simple dispersa
+                        it "Suma" do
+                                @m4 = @m1 + @m10
+				@m4[0][0].should eq(1)
+    				@m4[0][1].should eq(2)
+     				@m4[1][0].should eq(Racional.new(7,2))
+     				@m4[1][1].should eq(4)  
+                        end			
+
                       it "Resta" do
                       
 				@m4 = @m1 - @m2

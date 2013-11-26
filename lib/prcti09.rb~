@@ -2,7 +2,7 @@ require "prcti09/version"
 require 'gcd.rb'
 
 
-#####################################  MAtriz
+#####################################  Matriz
 class Matriz
   attr_accessor :m, :n
   def initialize (m,n)
@@ -174,14 +174,13 @@ class MDispersa < Matriz
   end
 
 	   def max
-                        aux = @v.keys
-                        aux1 = aux[0]
-                        aux2 = @v[aux1].values
-                        mayor = aux2[0]
+                        aux = @v.keys                        
+                        aux2 = @v[aux].values
+                        mayor = aux2
                         @v.each {
                                 |key, va| va.each {
                                         |key2, va2|
-                                        mayor = index(key,key2) if index(key,key2) > mayor
+                                         if index(key,key2) > mayor mayor = index(key,key2)
                                 }
                         }
                         mayor
@@ -189,9 +188,8 @@ class MDispersa < Matriz
             
 	    def min
                         aux = @v.keys
-                        aux1 = aux[0]
-                        aux2 = @v[aux1].values
-                        mayor = aux2[0]
+                        aux2 = @v[aux].values
+                        mayor = aux2
                         @v.each {
                                 |key, va| va.each {
                                         |key2, va2|
@@ -336,6 +334,9 @@ end
 
 puts @m3.min
 puts @m3.max
+
+@m4 =MDispersa.new(2, 2, {0 => {0 => 0, 1 => 0}, 1 => {0 => 0, 1 => 4}})
+puts @m4.index(1,1)
 
 
 
