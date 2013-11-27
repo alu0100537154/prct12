@@ -3,37 +3,48 @@ require 'gcd.rb'
 
 
 #####################################  Matriz
+###Inicializamos la matriz###
 class Matriz
   attr_accessor :m, :n
+
+#constructor matriz
+#variable que guardan el numero de filas y columnas
   def initialize (m,n)
-	@m = m
+	@m = m 
 	@n = n
   end
 end
-#####################################  MAtriz Densa
+
+
+### Definimos la matriz Mdensa que hereda de la Matriz inicial####
 class Mdensa < Matriz
   attr_accessor :matriz
-  def initialize (m,n)
+
+#definims metodo initialize para inicializar la matriz Mdensa
+  def initialize (m,n) 
 	super(m,n)
 	@matriz = Array.new(m){ Array.new(n) }
   end
   
+ 
   #insertar
   def []= (i,j,valor)
 	@matriz[i][j] = valor
   end
 
+#metodo para acceder a la matriz
   #mostrar
   def [] (i)
   	return @matriz[i]	
   end
   
+#operador suma de dos matrices densas
   def +(other)
                 resultado = Mdensa.new(@m,@n)
 		i = 0
 		j = 0 
-                while i < @m
-         		while j < @n
+                @m.times do |i|
+                        @n.times do |j|
                                 resultado[i][j] = @matriz[i][j] + other[i][j]
 				j += 1
                         end
@@ -43,11 +54,13 @@ class Mdensa < Matriz
                 resultado
    end
 
+
+#operador resta de dos matrices densas
    def -(other)
                 resultado = Mdensa.new(@m,@n)
                 i, j = 0 , 0
-                while i < @m
-                        while j < @n
+                @m.times do |i|
+                        @n.times do |j|
                                 resultado[i][j] = @matriz[i][j] - other[i][j]
                                 j = j + 1
                         end
@@ -57,15 +70,16 @@ class Mdensa < Matriz
                 resultado
    end
 
+#operador * de dos matrices densas
         def *(other)
                 resultado = Mdensa.new(@m,@n)
                 
                 i = 0
                 j = 0
                 k = 0
-                while i < @m
-                        while j < @n
-                                while k< @n
+                @m.times do |i|
+                        @n.times do |j|
+                                @n.times do |k|
                                         resultado[i][j] = @matriz[i][k] * other[k][j]
                                         k = k + 1
                                 end
@@ -78,11 +92,12 @@ class Mdensa < Matriz
 		resultado
         end
 
+#definimos min para buscar el numero min de la matriz
     def min
 		min = @matriz[0][0]
                 i, j = 0 , 0
-                while i < @m-1
-                        while j < @n-1
+                @m.times do |i|
+                        @n.times do |j|
  				if @matriz[i][j] < min
 		         		min = @matriz[i][i]
                                 end
@@ -94,12 +109,12 @@ class Mdensa < Matriz
                 min
    end
 
-
+#definimos la funcion max para buscar 
     def max     
                 max = 0
                 i, j = 0 , 0
-                while i < @m
-                        while j < @n
+                @m.times do |i|
+                        @n.times do |j|
                                 if (@matriz[i][j] > max)
                                         max = @matriz[i][i]
                                 end
@@ -115,10 +130,14 @@ class Mdensa < Matriz
 end
 
 #####################################  MAtriz Dispersa
- 
+#Clase matriz dispersa que hereda de la clase Matriz  
 class MDispersa < Matriz
   attr_accessor :v
+
+#Constructor de la clase
   def initialize (m,n,v)
+
+#Hahs guarda elementos de la matriz
 	super(m,n) 
 	@v = v    
   end
@@ -127,6 +146,7 @@ class MDispersa < Matriz
   	@v[j]
   end
 
+#Devuelve el valor del indice
   def index(j,i)
 	v = @v.fetch(j,0)
 	if v!= 0
@@ -137,14 +157,17 @@ class MDispersa < Matriz
 	end
  end 
 
+#metodo para acceder a la matriz
 	def [](i)
             @v[i]
           end
 
+#mostrar
   def to_s
 	@v
   end
 
+#operador suma suma dos fracciones 
   def +(other)
 	case other
 	when Mdensa
@@ -156,6 +179,7 @@ class MDispersa < Matriz
 	end
   end
 
+#operador resta resta dos fracciones
    def -(other)
 	case other
 	when Mdensa
@@ -168,11 +192,12 @@ class MDispersa < Matriz
    end
 
 
-	
+#operador multiplicar multiplica dos fracciones
   def *(other)
                 
   end
 
+#definimos la funcion max que nos devolvera el valor maximo de la matriz
 	   def max
                         aux = @v.keys                        
                         aux2 = @v[aux].values
@@ -180,12 +205,13 @@ class MDispersa < Matriz
                         @v.each {
                                 |key, va| va.each {
                                         |key2, va2|
-                                         if index(key,key2) > mayor mayor = index(key,key2)
+                                        mayor = index(key,key2) if index(key,key2) > mayor
                                 }
                         }
                         mayor
             end
             
+#definimos la funcion minimo que nos devolvera el valor minimo de la matriz
 	    def min
                         aux = @v.keys
                         aux2 = @v[aux].values
@@ -203,79 +229,97 @@ end
 
 
 #####################################  Racional
-
+#clase fraccion para poder trabajar con fracciones
 class Racional
 
+#
         include Comparable
-   attr_accessor :numerador, :denominador
+ 
+#acceder variables de la clase
+  attr_accessor :numerador, :denominador
 
+#constructor
    def initialize(numerador, denominador)
       @numerador, @denominador = numerador, denominador
       # reducir
    end
 
+#metodo para reducir la fraccion 
    def reducir(rac)
       mcd = gcd(rac.numerador, rac.denominador)
       racional = Racional.new((rac.numerador/mcd),rac.denominador/mcd)
    end
 
+#nos devolvera el numerador
    def num
       @numerador
    end
 
+#nos devolvera el denominador
    def denom
       @denominador
    end
 
+#mostrar
    def to_s
       "#{@numerador}/#{@denominador}"
    end
 
+#mostrar en coma flotante
    def flotante
       @numerador/@denominador
    end
 
+#hallar el valor absoluto
    def abs
       if @numerador < 0 then @numerador = @numerador * -1 end
       if @denominador < 0 then @denominador = @denominador * -1 end
    end
 
+#hallar reciproco de una fraccion
    def reciprocal
       a = @numerador
       @numerador = @denominador
       @denominador = a
    end
 
+#inverso de una fraccion
    def -@
       @numerador = @numerador * -1
    end
 
+#operador suma calcula la suma de dos fracciones
    def +(other)
       mcm = (@denominador * other.denominador)/gcd(@denominador, other.denominador)
       @racional = Racional.new(((mcm/@denominador*@numerador) + (mcm/other.denominador*other.numerador)),mcm)
       reducir(@racional)
    end
 
+#calcula la resta de dos fracciones
    def -(other)
       mcm = (@denominador * other.denominador)/gcd(@denominador, other.denominador)
       @racional = Racional.new(((mcm/@denominador*@numerador) - (mcm/other.denominador*other.numerador)),mcm)
       reducir(@racional)
    end
 
+#calcula la multiplicacion de dos fracciones
    def *(other)
       @racional = Racional.new((@numerador * other.numerador),@denominador * other.denominador)
       reducir(@racional)
    end
 
+#calcula la division de dos fracciones
    def /(other)
            @racional = Racional.new((@numerador * other.denominador),@denominador * other.numerador)
       reducir(@racional)
    end
 
+#calcula el resto al dividir dos fracciones
    def %(other)
       (@numerador/@denominador)%(other.numerador/other.denominador)
    end
 
+#definir operador para el modulo comparable
    def <=>(other)
       mcm = (@denominador * other.denominador)/gcd(@denominador, other.denominador)
       a = (mcm/@denominador*@numerador)
@@ -290,6 +334,7 @@ class Racional
       end
    end
 
+#operar enteros con fracciones
    def coerce(other)
       if Integer === other
          [self, Racional.new(other,1)]
@@ -301,7 +346,7 @@ end
 
 
 #####################################  Main
-
+#mostrar por pantalla resultados
  @m = Mdensa.new(2,2)
  @m[0,0] = 1
  @m[0,1] = 2

@@ -43,8 +43,8 @@ class Mdensa < Matriz
                 resultado = Mdensa.new(@m,@n)
 		i = 0
 		j = 0 
-                while i < @m
-         		while j < @n
+                @m.times do |i|
+                        @n.times do |j|
                                 resultado[i][j] = @matriz[i][j] + other[i][j]
 				j += 1
                         end
@@ -59,8 +59,8 @@ class Mdensa < Matriz
    def -(other)
                 resultado = Mdensa.new(@m,@n)
                 i, j = 0 , 0
-                while i < @m
-                        while j < @n
+                @m.times do |i|
+                        @n.times do |j|
                                 resultado[i][j] = @matriz[i][j] - other[i][j]
                                 j = j + 1
                         end
@@ -77,9 +77,9 @@ class Mdensa < Matriz
                 i = 0
                 j = 0
                 k = 0
-                while i < @m
-                        while j < @n
-                                while k< @n
+                @m.times do |i|
+                        @n.times do |j|
+                                @n.times do |k|
                                         resultado[i][j] = @matriz[i][k] * other[k][j]
                                         k = k + 1
                                 end
@@ -96,8 +96,8 @@ class Mdensa < Matriz
     def min
 		min = @matriz[0][0]
                 i, j = 0 , 0
-                while i < @m-1
-                        while j < @n-1
+                @m.times do |i|
+                        @n.times do |j|
  				if @matriz[i][j] < min
 		         		min = @matriz[i][i]
                                 end
@@ -113,8 +113,8 @@ class Mdensa < Matriz
     def max     
                 max = 0
                 i, j = 0 , 0
-                while i < @m
-                        while j < @n
+                @m.times do |i|
+                        @n.times do |j|
                                 if (@matriz[i][j] > max)
                                         max = @matriz[i][i]
                                 end
