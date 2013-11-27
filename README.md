@@ -1,8 +1,6 @@
 # Prcti09
 
 TODO: Write a gem description
-ja
-
 
 ## Installation
 
