@@ -1,5 +1,5 @@
 require 'prcti09.rb'
-
+require 'oper.rb'
 
 #Densa
 describe Matriz do
@@ -274,8 +274,43 @@ end
         x.should eq(4)
      end
 		
-                	   
-end
+   end
+end    
 
-       end    
 
+
+describe "DSL" do
+                
+                it " suma" do
+                        @sum = Mydsl.new("suma") do
+                                operando(2,2,[1,1,2,2])
+                                operando(2,2,[2,2,4,4])
+                        end
+                        @m1 = Mdensa.new(2,2)
+			@m1[0,0] = 3
+    			@m1[0,1] = 3
+   			@m1[1,0] = 3
+    			@m1[1,1] = 3
+                        aux = @sum.run
+			aux.should eq(@m1)
+
+                end
+                
+		it "resta" do
+                        @sum = Mydsl.new("resta") do
+                                operando(2,2,[1,1,2,2])
+                                operando(2,2,[2,2,4,4])
+                        end
+                        @m1 = Mdensa.new(2,2)
+			@m1[0,0] = -1
+    			@m1[0,1] = -1
+   			@m1[1,0] = -1
+    			@m1[1,1] = -1
+                        aux = @sum.run
+			aux.should eq(@m1)
+
+                end
+               
+
+
+        end
