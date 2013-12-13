@@ -283,14 +283,14 @@ describe "DSL" do
                 
                 it " suma" do
                         @sum = Mydsl.new("suma") do
-                                operando(2,2,[1,1,2,2])
-                                operando(2,2,[2,2,4,4])
+                                operando(2,2,[1,2,3,4])
+                                operando(2,2,[1,2,3,4])
                         end
                         @m1 = Mdensa.new(2,2)
-			@m1[0,0] = 3
-    			@m1[0,1] = 3
-   			@m1[1,0] = 3
-    			@m1[1,1] = 3
+			@m1[0,0] = 2
+    			@m1[0,1] = 4
+   			@m1[1,0] = 6
+    			@m1[1,1] = 8
                         aux = @sum.run
 			aux.should eq(@m1)
 
@@ -298,14 +298,14 @@ describe "DSL" do
                 
 		it "resta" do
                         @sum = Mydsl.new("resta") do
-                                operando(2,2,[1,1,2,2])
-                                operando(2,2,[2,2,4,4])
+                                operando(2,2,[1,2,3,4])
+                                operando(2,2,[1,2,3,4])
                         end
                         @m1 = Mdensa.new(2,2)
-			@m1[0,0] = -1
-    			@m1[0,1] = -1
-   			@m1[1,0] = -1
-    			@m1[1,1] = -1
+			@m1[0,0] = 0
+    			@m1[0,1] = 0
+   			@m1[1,0] = 0
+    			@m1[1,1] = 0
                         aux = @sum.run
 			aux.should eq(@m1)
 

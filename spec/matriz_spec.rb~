@@ -224,7 +224,7 @@ end
 				@m4[0][0].should eq(1)
     				@m4[0][1].should eq(2)
      				@m4[1][0].should eq(Racional.new(7,2))
-     				@m4[constructorvec1][1].should eq(4)  
+     				@m4[1][1].should eq(4)  
                         end			
 
                       it "Resta" do
